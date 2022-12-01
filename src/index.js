@@ -1,13 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import App from './App';
+require('dotenv').config();
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <BrowserRouter>
-    <React.StrictMode>
-    <App />
-    </React.StrictMode>
-  </BrowserRouter>
-);
+const app = require('./app');
+require('./database');
+
+//---- Code that makes server runs ---//
+async function main() {
+  await app.listen(app.get('port'));
+  console.log(`Server is running in port: ${app.get('port')}`);
+}
+
+main();
